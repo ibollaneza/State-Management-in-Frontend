@@ -1,309 +1,531 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>State Management in Frontend</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #f4f4f9;
-      color: #333;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      text-align: center;
-      padding: 20px;
-      background: #2c3e50;
-      color: #ecf0f1;
-      border-bottom: 2px solid #2c3e50;
-    }
-    .main-container {
-      display: flex;
-      flex: 1;
-      padding: 20px;
-      overflow: hidden;
-    }
-    .sidebar {
-      width: 300px;
-      padding: 15px;
-      background: #ecf0f1;
-      border: 1px solid #bdc3c7;
-      border-radius: 8px;
-      overflow-y: auto;
-      margin-right: 20px;
-    }
-    .content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      background: #ffffff;
-      border: 1px solid #bdc3c7;
-      border-radius: 8px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+			<script type="text/javascript" class="_iub_cs_skip">
+				var _iub = _iub || {};
+				_iub.csConfiguration = _iub.csConfiguration || {};
+				_iub.csConfiguration.siteId = "3812069";
+				_iub.csConfiguration.cookiePolicyId = "47454543";
+			</script>
+			<script class="_iub_cs_skip" src="https://cs.iubenda.com/autoblocking/3812069.js"></script>
+			<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	
+	<link rel="alternate" href="https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/" hreflang="en">
+<link rel="alternate" href="https://www.codemotion.com/magazine/it/frontend-it/sviluppo-web/ottimizzazione-avanzata-delle-prestazioni-web/" hreflang="it">
+<link rel="alternate" href="https://www.codemotion.com/magazine/es/frontend-es/desarrollo-web/guia-practica-para-mejorar-el-rendimiento-web/" hreflang="es">
 
-    h1, h2, h3 {
-      margin: 10px 0;
-      text-transform: uppercase;
-    }
+	<!-- This site is optimized with the Yoast SEO Premium plugin v24.0 (Yoast SEO v24.0) - https://yoast.com/wordpress/plugins/seo/ -->
+	<link media="all" href="https://www.codemotion.com/magazine/wp-content/cache/autoptimize/css/autoptimize_2cccb3ff26c36db145051d75efcf295e.css" rel="stylesheet">
+<title>Advanced Web Performance Optimization - Codemotion Magazine</title>
+	<meta name="description" content="Read this guide to boost your web performance optimization. Learn about lazy loading, caching, image compression and more.">
+	<link rel="canonical" href="https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:locale:alternate" content="it_IT">
+	<meta property="og:locale:alternate" content="es_ES">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Advanced Web Performance Optimization">
+	<meta property="og:description" content="Read this guide to boost your web performance optimization. Learn about lazy loading, caching, image compression and more.">
+	<meta property="og:url" content="https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/">
+	<meta property="og:site_name" content="Codemotion Magazine">
+	<meta property="article:publisher" content="https://www.facebook.com/Codemotion.Italy/">
+	<meta property="article:published_time" content="2023-05-10T07:00:00+00:00">
+	<meta property="article:modified_time" content="2023-05-09T14:50:08+00:00">
+	<meta property="og:image" content="https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-scaled.jpg">
+	<meta property="og:image:width" content="2560">
+	<meta property="og:image:height" content="1707">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta name="author" content="Codemotion">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@CodemotionIT">
+	<meta name="twitter:site" content="@CodemotionIT">
+	<meta name="twitter:label1" content="Written by">
+	<meta name="twitter:data1" content="Codemotion">
+	<meta name="twitter:label2" content="Est. reading time">
+	<meta name="twitter:data2" content="7 minutes">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#article","isPartOf":{"@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/"},"author":{"name":"Codemotion","@id":"https://www.codemotion.com/magazine/#/schema/person/201bb98b02412383686cced7521b861c"},"headline":"Advanced Web Performance Optimization","datePublished":"2023-05-10T07:00:00+00:00","dateModified":"2023-05-09T14:50:08+00:00","mainEntityOfPage":{"@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/"},"wordCount":1412,"publisher":{"@id":"https://www.codemotion.com/magazine/#organization"},"image":{"@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#primaryimage"},"thumbnailUrl":"https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-scaled.jpg","keywords":["lazy loading"],"articleSection":["Web Developer"],"inLanguage":"en-US","copyrightYear":"2023","copyrightHolder":{"@id":"https://www.codemotion.com/magazine/#organization"}},{"@type":"WebPage","@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/","url":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/","name":"Advanced Web Performance Optimization - Codemotion Magazine","isPartOf":{"@id":"https://www.codemotion.com/magazine/#website"},"primaryImageOfPage":{"@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#primaryimage"},"image":{"@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#primaryimage"},"thumbnailUrl":"https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-scaled.jpg","datePublished":"2023-05-10T07:00:00+00:00","dateModified":"2023-05-09T14:50:08+00:00","description":"Read this guide to boost your web performance optimization. Learn about lazy loading, caching, image compression and more.","breadcrumb":{"@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#primaryimage","url":"https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-scaled.jpg","contentUrl":"https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-scaled.jpg","width":2560,"height":1707,"caption":"web performance optimization concept"},{"@type":"BreadcrumbList","@id":"https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.codemotion.com/magazine/"},{"@type":"ListItem","position":2,"name":"Frontend","item":"https://www.codemotion.com/magazine/frontend/"},{"@type":"ListItem","position":3,"name":"Web Developer","item":"https://www.codemotion.com/magazine/frontend/web-developer/"},{"@type":"ListItem","position":4,"name":"Advanced Web Performance Optimization"}]},{"@type":"WebSite","@id":"https://www.codemotion.com/magazine/#website","url":"https://www.codemotion.com/magazine/","name":"Codemotion Magazine","description":"We code the future. Together","publisher":{"@id":"https://www.codemotion.com/magazine/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.codemotion.com/magazine/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://www.codemotion.com/magazine/#organization","name":"Codemotion","url":"https://www.codemotion.com/magazine/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.codemotion.com/magazine/#/schema/logo/image/","url":"https://www.codemotion.com/magazine/wp-content/uploads/2019/11/codemotionlogo.png","contentUrl":"https://www.codemotion.com/magazine/wp-content/uploads/2019/11/codemotionlogo.png","width":225,"height":225,"caption":"Codemotion"},"image":{"@id":"https://www.codemotion.com/magazine/#/schema/logo/image/"},"sameAs":["https://www.facebook.com/Codemotion.Italy/","https://x.com/CodemotionIT"]},{"@type":"Person","@id":"https://www.codemotion.com/magazine/#/schema/person/201bb98b02412383686cced7521b861c","name":"Codemotion","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.codemotion.com/magazine/#/schema/person/image/","url":"https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-codemotionlogo-150x150.png","contentUrl":"https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-codemotionlogo-150x150.png","caption":"Codemotion"},"description":"Articles wirtten by the Codemotion staff. Tech news, inspiration, latest treends in software development and more.","sameAs":["https://x.com/CodemotionIT"],"url":"https://www.codemotion.com/magazine/author/codemotion-2/"}]}</script>
+	<!-- / Yoast SEO Premium plugin. -->
 
-    .section-title {
-      margin-top: 15px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
 
-    button {
-      background-color: #2980b9;
-      color: #ffffff;
-      border: none;
-      padding: 10px 15px;
-      margin-top: 10px;
-      cursor: pointer;
-      font-size: 1em;
-      border-radius: 4px;
-      transition: 0.2s;
-    }
-    button:hover {
-      background-color: #3498db;
-    }
+<link rel="dns-prefetch" href="//cdn.iubenda.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="alternate" type="application/rss+xml" title="Codemotion Magazine &raquo; Feed" href="https://www.codemotion.com/magazine/feed/">
+<link rel="alternate" type="application/rss+xml" title="Codemotion Magazine &raquo; Comments Feed" href="https://www.codemotion.com/magazine/comments/feed/">
 
-    select {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      background: #ecf0f1;
-      color: #333;
-      border: 1px solid #bdc3c7;
-      border-radius: 4px;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-    }
 
-    .log-container {
-      background: #f4f4f9;
-      border: 1px solid #bdc3c7;
-      border-radius: 4px;
-      padding: 15px;
-      overflow-y: auto;
-      height: 100%;
-      font-size: 0.9em;
-      white-space: pre-line;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-    }
-    .log-entry {
-      margin-bottom: 10px;
-    }
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #2c3e50;
-      color: #ecf0f1;
-      border-top: 2px solid #2c3e50;
-      font-size: 0.8em;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      margin-top: auto;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1> State Management in Frontend</h1>
-    <p style="margin:0;">Choose the Best Technologies for Your Web Project</p>
-  </header>
 
-  <div class="main-container" id="mainContent">
-    <!-- Sidebar (Stack Selection) -->
-    <div class="sidebar" id="stackSelection">
-      <h3>Frontend Stack</h3>
-      <div class="section-title">Framework</div>
-      <div>
-        <select id="frontendFramework">
-          <option value="react">React</option>
-          <option value="vue">Vue.js</option>
-          <option value="svelte">Svelte</option>
-        </select>
-      </div>
 
-      <div class="section-title">CSS Preprocessor</div>
-      <div>
-        <select id="cssPreprocessor">
-          <option value="sass">Sass</option>
-          <option value="postcss">PostCSS</option>
-        </select>
-      </div>
 
-      <div class="section-title">CSS-in-JS</div>
-      <div>
-        <select id="cssInJs">
-          <option value="styled-components">Styled Components</option>
-          <option value="emotion">Emotion</option>
-        </select>
-      </div>
 
-      <div class="section-title">Web Components</div>
-      <div>
-        <select id="webComponents">
-          <option value="shadow-dom">Shadow DOM</option>
-          <option value="lit">Lit</option>
-        </select>
-      </div>
 
-      <h3>Backend Stack</h3>
-      <div class="section-title">Microservices</div>
-      <div>
-        <select id="microservices">
-          <option value="docker">Microservices with Docker</option>
-          <option value="kubernetes">Orchestrated with Kubernetes</option>
-        </select>
-      </div>
 
-      <div class="section-title">Framework</div>
-      <div>
-        <select id="backendFramework">
-          <option value="nestjs">NestJS</option>
-          <option value="nextjs">Next.js</option>
-        </select>
-      </div>
 
-      <div class="section-title">GraphQL</div>
-      <div>
-        <select id="graphql">
-          <option value="apollo">Apollo</option>
-          <option value="relay">Relay</option>
-        </select>
-      </div>
 
-      <div class="section-title">Serverless Functions</div>
-      <div>
-        <select id="serverless">
-          <option value="aws-lambda">AWS Lambda</option>
-          <option value="vercel">Vercel</option>
-          <option value="netlify">Netlify Functions</option>
-        </select>
-      </div>
 
-      <button id="saveStackBtn">Save Stack</button>
-    </div>
+<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css2?family=IBM+Plex+Sans%3Awght%40400%3B500%3B600%3B700&amp;display=swap&amp;ver=1.0.0" type="text/css" media="all">
 
-    <!-- Content (Log) -->
-    <div class="content" id="selectionLog">
-      <h2>Selection Log</h2>
-      <div id="logContainer" class="log-container"></div>
-    </div>
-  </div>
 
-  <footer>
-    <p>© 2025 State Management Selection. All rights reserved.</p>
-  </footer>
 
-  <script>
-    // DOM Elements
-    const saveStackBtn = document.getElementById("saveStackBtn");
-    const logContainer = document.getElementById("logContainer");
 
-    // Stack Selection
-    const frontendFramework = document.getElementById("frontendFramework");
-    const cssPreprocessor = document.getElementById("cssPreprocessor");
-    const cssInJs = document.getElementById("cssInJs");
-    const webComponents = document.getElementById("webComponents");
-    const microservices = document.getElementById("microservices");
-    const backendFramework = document.getElementById("backendFramework");
-    const graphql = document.getElementById("graphql");
-    const serverless = document.getElementById("serverless");
 
-    // Technical terms array
-    const technicalTerms = [
-      "Scalability",
-      "Latency",
-      "Throughput",
-      "Load Balancing",
-      "Containerization",
-      "Microservices",
-      "Serverless",
-      "GraphQL",
-      "REST API",
-      "WebAssembly",
-      "Edge Computing",
-      "CDN",
-      "CI/CD",
-      "DevOps",
-      "Observability",
-      "Telemetry",
-      "Cache Invalidation",
-      "Session Management",
-      "Data Sharding",
-      "Event Sourcing"
-    ];
 
-    // Event Listeners
-    saveStackBtn.addEventListener("click", () => {
-      const selectedFrontendFramework = frontendFramework.value;
-      const selectedCssPreprocessor = cssPreprocessor.value;
-      const selectedCssInJs = cssInJs.value;
-      const selectedWebComponents = webComponents.value;
-      const selectedMicroservices = microservices.value;
-      const selectedBackendFramework = backendFramework.value;
-      const selectedGraphql = graphql.value;
-      const selectedServerless = serverless.value;
 
-      const logEntry = `
-        Frontend Stack:
-        - Framework: ${selectedFrontendFramework}
-        - CSS Preprocessor: ${selectedCssPreprocessor}
-        - CSS-in-JS: ${selectedCssInJs}
-        - Web Components: ${selectedWebComponents}
-        
-        Backend Stack:
-        - Microservices: ${selectedMicroservices}
-        - Framework: ${selectedBackendFramework}
-        - GraphQL: ${selectedGraphql}
-        - Serverless Functions: ${selectedServerless}
-      `;
+<script type="text/javascript" class=" _iub_cs_skip" id="iubenda-head-inline-scripts-0">
+/* <![CDATA[ */
 
-      appendLog(logEntry);
-      appendTechnicalTerms();
-    });
+var _iub = _iub || [];
+_iub.csConfiguration = {"siteId":3812069,"cookiePolicyId":47454543,"lang":"en","storage":{"useSiteId":true}};
+/* ]]> */
+</script>
+<script type="text/javascript" class=" _iub_cs_skip" src="//cdn.iubenda.com/cs/gpp/stub.js?ver=3.11.3" id="iubenda-head-scripts-1-js"></script>
+<script type="text/javascript" charset="UTF-8" async="" class=" _iub_cs_skip" src="//cdn.iubenda.com/cs/iubenda_cs.js?ver=3.11.3" id="iubenda-head-scripts-2-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/plugins/jw-player-7-for-wp-premium/jw-widget/js/jw-widget-min.js" id="jwppp-widget-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/plugins/codemotion-magazine/assets/plugin.js" id="plugin-script-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/themes/codemotion-magazine/js/bvselect.js" id="bvselect-script-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/themes/codemotion-magazine/js/misc.js" id="misc-script-js"></script>
+<link rel="https://api.w.org/" href="https://www.codemotion.com/magazine/wp-json/">
+<link rel="alternate" title="JSON" type="application/json" href="https://www.codemotion.com/magazine/wp-json/wp/v2/posts/20847">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.codemotion.com/magazine/xmlrpc.php?rsd">
+<link rel="shortlink" href="https://www.codemotion.com/magazine/?p=20847">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.codemotion.com/magazine/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.codemotion.com%2Fmagazine%2Ffrontend%2Fweb-developer%2Fadvanced-web-performance-optimization%2F">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.codemotion.com/magazine/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.codemotion.com%2Fmagazine%2Ffrontend%2Fweb-developer%2Fadvanced-web-performance-optimization%2F&amp;format=xml">
+ <!-- Google Tag Manager -->
+<script type="text/plain" class=" _iub_cs_activate-inline" data-iub-purposes="2">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M6LGRFX');</script>
+<!-- End NEW Google Tag Manager --><link rel="icon" href="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-favicon-150x150.png" sizes="32x32">
+<link rel="icon" href="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-favicon-300x300.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-favicon-300x300.png">
+<meta name="msapplication-TileImage" content="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-favicon-300x300.png">
+		
+		</head>
+<body class="post-template-default single single-post postid-20847 single-format-standard wp-custom-logo wp-embed-responsive user-registration-page header-image header-full-width full-width-content genesis-breadcrumbs-hidden genesis-footer-widgets-visible first-block-core-paragraph">
+<div class="site-container">
+<ul class="genesis-skip-link">
+<li><a href="#genesis-nav-primary" class="screen-reader-shortcut"> Skip to primary navigation</a></li>
+<li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to main content</a></li>
+<li><a href="#genesis-footer-widgets" class="screen-reader-shortcut"> Skip to footer</a></li>
+</ul>
+<header class="site-header"><div class="wrap">
+<div class="title-area">
+<a href="https://codemotion.com" class="custom-logo-link"><img src="https://www.codemotion.com/magazine/wp-content/uploads/2023/09/codemotion-logo.svg" class="cm-logo"></a><p class="site-title"><a href="https://www.codemotion.com/magazine/">Codemotion Magazine</a></p>
+<p class="site-description">We code the future. Together</p>
+</div>
+<nav class="nav-primary genesis-responsive-menu" aria-label="Main" id="genesis-nav-primary" style=""><div class="wrap">
+<ul id="menu-top-menu" class="menu genesis-nav-menu menu-primary js-superfish">
+<li id="menu-item-14990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-14990">
+<a><span>Discover</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-16873" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16873"><a href="https://events.codemotion.com/"><span>Events</span></a></li>
+	<li id="menu-item-16874" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16874"><a href="https://community-en.codemotion.it/"><span>Community</span></a></li>
+	<li id="menu-item-16876" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16876"><a href="https://community.codemotion.com/?view=communities"><span>Partners</span></a></li>
+	<li id="menu-item-16877" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16877"><a href="https://community-en.codemotion.it/partners/proposal"><span>Become a partner</span></a></li>
+	<li id="menu-item-16875" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16875"><a href="https://events.codemotion.com/?type=online_hackathon"><span>Hackathons</span></a></li>
+</ul>
+</li>
+<li id="menu-item-899" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-899">
+<a href="https://www.codemotion.com/magazine/"><span>Magazine</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-16859" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16859"><a href="https://www.codemotion.com/magazine/backend/"><span>Backend</span></a></li>
+	<li id="menu-item-16862" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-16862"><a href="https://www.codemotion.com/magazine/frontend/"><span>Frontend</span></a></li>
+	<li id="menu-item-16858" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16858"><a href="https://www.codemotion.com/magazine/ai-ml/"><span>AI/ML</span></a></li>
+	<li id="menu-item-16861" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16861"><a href="https://www.codemotion.com/magazine/devops/"><span>DevOps</span></a></li>
+	<li id="menu-item-16860" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16860"><a href="https://www.codemotion.com/magazine/dev-life/"><span>Dev Life</span></a></li>
+	<li id="menu-item-16863" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16863"><a href="https://www.codemotion.com/magazine/soft-skills/"><span>Soft Skills</span></a></li>
+	<li id="menu-item-18557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-18557"><a href="https://www.codemotion.com/magazine/infographics/"><span>Infographics</span></a></li>
+</ul>
+</li>
+<li id="menu-item-14991" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-14991">
+<a><span>Talent</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-18959" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18959"><a href="https://www.codemotion.com/talent/"><span>Discover Talent</span></a></li>
+	<li id="menu-item-18960" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18960"><a href="https://www.codemotion.com/jobs"><span>Jobs</span></a></li>
+	<li id="menu-item-23517" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23517"><a href="https://www.codemotion.com/talent/manifesto/"><span>Manifesto</span></a></li>
+</ul>
+</li>
+<li id="menu-item-16837" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16837"><a href="https://partners.codemotion.com/"><span>Companies</span></a></li>
+<li id="menu-item-16838" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16838"><a href="https://forcompanies.codemotion.com/"><span>For Business</span></a></li>
+</ul>
+<ul class="icon-menu">
+<li class="menu-item"><a class="icon search" href="https://www.codemotion.com/magazine/explore-topics/"></a></li>
+<li><ul class="pll-switcher-list-tiny">	<li class="lang-item lang-item-10014 lang-item-en current-lang lang-item-first"><a lang="en-US" hreflang="en-US" href="https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAmVBMVEViZsViZMJiYrf9gnL8eWrlYkjgYkjZYkj8/PujwPybvPz4+PetraBEgfo+fvo3efkydfkqcvj8Y2T8UlL8Q0P8MzP9k4Hz8/Lu7u4DdPj9/VrKysI9fPoDc/EAZ7z7IiLHYkjp6ekCcOTk5OIASbfY/v21takAJrT5Dg6sYkjc3Nn94t2RkYD+y8KeYkjs/v7l5fz0dF22YkjWvcOLAAAAgElEQVR4AR2KNULFQBgGZ5J13KGGKvc/Cw1uPe62eb9+Jr1EUBFHSgxxjP2Eca6AfUSfVlUfBvm1Ui1bqafctqMndNkXpb01h5TLx4b6TIXgwOCHfjv+/Pz+5vPRw7txGWT2h6yO0/GaYltIp5PT1dEpLNPL/SdWjYjAAZtvRPgHJX4Xio+DSrkAAAAASUVORK5CYII=" alt="" width="16" height="11" style="width: 16px; height: 11px;"><span style="margin-left:0.3em;">EN</span></a></li>
+	<li class="lang-item lang-item-10017 lang-item-it"><a lang="it-IT" hreflang="it-IT" href="https://www.codemotion.com/magazine/it/frontend-it/sviluppo-web/ottimizzazione-avanzata-delle-prestazioni-web/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAUVBMVEUAiQAAgADk5OTe3t7vAAB3yXf9/f36+vr5Vlb3RkZjwWNYvVj4+Pj1MzP1KChQuFD1GxviAABHtUf19fXzDw4/sT8AcAA2qzYAWgDLy8vDw8ObXclsAAAAVElEQVR4AQXBSwoCQRQEsNT70CC69P5XdCUMA2ISSAiBWAQScg8bN7GJWxFDrCivwhCLMipGx3LKUOi2HAZluy2HgXprxQGfGL6G63B5MJ5FCD/4A3DaCLvbBle5AAAAAElFTkSuQmCC" alt="" width="16" height="11" style="width: 16px; height: 11px;"><span style="margin-left:0.3em;">IT</span></a></li>
+	<li class="lang-item lang-item-10591 lang-item-es"><a lang="es-ES" hreflang="es-ES" href="https://www.codemotion.com/magazine/es/frontend-es/desarrollo-web/guia-practica-para-mejorar-el-rendimiento-web/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAflBMVEX/AAD9AAD3AADxAADrAAD/eXn9bGz8YWH8WVn6UVH5SEj5Pz/3NDT0Kir9/QD+/nL+/lT18lDt4Uf6+j/39zD39yf19R3n5wDxflXsZ1Pt4Y3x8zr0wbLs1NXz8xPj4wD37t3jmkvsUU/Bz6nrykm3vJ72IiL0FBTyDAvhAABEt4UZAAAAX0lEQVR4AQXBQUrFQBBAwXqTDkYE94Jb73+qfwVRcYxVQRBRToiUfoaVpGTrtdS9SO0Z9FR9lVy/g5c99+dKl30N5uxPuviexXEc9/msC7TOkd4kHu/Dlh4itCJ8AP4B0w4Qwmm7CFQAAAAASUVORK5CYII=" alt="" width="16" height="11" style="width: 16px; height: 11px;"><span style="margin-left:0.3em;">ES</span></a></li>
+</ul></li>
+</ul>
+<ul class="signin-menu not-logged">
+<li class="menu-item signin"><a href="https://id.codemotion.com/#/SignIn/?hop=https%3A%2F%2Fwww.codemotion.com%2Fmagazine%2Ffrontend%2Fweb-developer%2Fadvanced-web-performance-optimization%2F"><span>Sign in</span></a></li>
+</ul>
+</div></nav>
+</div></header><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" id="genesis-content"><article class="post-20847 post type-post status-publish format-standard has-post-thumbnail category-web-developer tag-lazy-loading entry" aria-label="Advanced Web Performance Optimization"><p class="entry-meta"><span class="entry-author"><a href="https://www.codemotion.com/magazine/author/codemotion-2/" class="entry-author-link" rel="author"><span class="entry-author-name">Codemotion</span></a></span><time class="entry-time">May 10, 2023</time></p>
+<header class="entry-header"><h1 class="entry-title">Advanced Web Performance Optimization</h1>
+<span class="entry-categories"><a href="https://www.codemotion.com/magazine/frontend/web-developer/">Web Developer</a></span></header><div class="entry-content">
+<img width="896" height="504" src="https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-896x504.jpg" class="alignleft post-image entry-image" alt="web performance optimization concept" decoding="async" srcset="https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-896x504.jpg 896w, https://www.codemotion.com/magazine/wp-content/uploads/2023/05/mathew-schwartz-sb7RUrRMaC4-unsplash-400x225.jpg 400w" sizes="(max-width: 896px) 100vw, 896px"><div class="ssbats-social-share-buttons">
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization" class="ssbats-share-facebook ssbats-share-popup"><span>facebook</span></a><a href="https://www.twitter.com/intent/tweet?url=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization&amp;via=CodemotionIT" class="ssbats-share-twitter ssbats-share-popup"><span>twitter</span></a><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization" class="ssbats-share-linkedin ssbats-share-popup"><span>linkedin</span></a><a href="https://www.reddit.com/submit?url=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization" class="ssbats-share-reddit ssbats-share-popup"><span>reddit</span></a>
+</div>
+<p>Web performance optimization has always been critical for websites and apps. Whether providing services, entertainment or information, activities are impacted when performance is slow or inconsistent. Today&rsquo;s sites have greater sophistication and more capabilities than ever before. Users expect all of this to work seamlessly, but if it doesn&rsquo;t, in a competitive marketplace, there are plenty of alternative options. So what can you do to ensure your web performance stays at the cutting edge?</p>
 
-    function appendTechnicalTerms() {
-      const terms = generateTechnicalTerms();
-      const div = document.createElement("div");
-      div.className = "log-entry";
-      div.textContent = terms;
-      logContainer.appendChild(div);
-      logContainer.scrollTop = logContainer.scrollHeight;
-    }
 
-    function generateTechnicalTerms() {
-      let terms = '';
-      for (let i = 0; i < 10; i++) {
-        const randomIndex = Math.floor(Math.random() * technicalTerms.length);
-        const randomValue = Math.floor(Math.random() * 100);
-        terms += `${technicalTerms[randomIndex]}: ${randomValue}\n`;
-      }
-      return terms;
-    }
 
-    function appendLog(text) {
-      const div = document.createElement("div");
-      div.className = "log-entry";
-      div.textContent = text;
-      logContainer.appendChild(div);
-      logContainer.scrollTop = logContainer.scrollHeight;
-    }
-  </script>
+<h2 class="wp-block-heading" id="h-what-is-web-performance">What is web performance?</h2>
 
-  <!-- Importar dependencias desde CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.1/redux.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.4/react-redux.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/@reduxjs/toolkit/1.6.2/redux-toolkit.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-query/3.13.0/react-query.production.min.js"></script>
+
+
+<p>Web performance is determined by several factors. Let&rsquo;s consider some of the key metrics.</p>
+
+				
+				<div class="cm-related-article">
+					<a href="https://www.codemotion.com/magazine/frontend/web-developer/meet-flock-the-flutter-fork-aiming-to-accelerate-development/" target="_blank">
+						<article class="cm-article">
+							<span class="cm-article-recommended-article">Recommended article</span>
+							<div class="cm-image-container"><img loading="lazy" decoding="async" width="150" height="150" src="https://www.codemotion.com/magazine/wp-content/uploads/2024/10/Captura-de-pantalla-2024-10-29-180430-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Flock. Fork flutter" srcset="https://www.codemotion.com/magazine/wp-content/uploads/2024/10/Captura-de-pantalla-2024-10-29-180430-150x150.png 150w, https://www.codemotion.com/magazine/wp-content/uploads/2024/10/Captura-de-pantalla-2024-10-29-180430-100x100.png 100w" sizes="auto, (max-width: 150px) 100vw, 150px"></div>
+							<div class="cm-content-container">
+								<div class="cm-article-header">
+									<span class="cm-article-data">November 4, 2024</span>
+								</div>
+								<div class="cm-article-content">
+									<h3>Meet Flock: The Flutter Fork Aiming to Accelerate Development</h3>
+							
+								</div>
+								<div class="cm-article-footer">
+									<div class="cm-article-author-container">
+<img loading="lazy" decoding="async" src="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-codemotionlogo-150x150.png" width="40" height="40" srcset="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-codemotionlogo-150x150.png 2x" alt="Codemotion" class="avatar avatar-40 wp-user-avatar wp-user-avatar-40 alignnone photo">
+										<div class="cm-article-author">
+											<p class="cm-article-author-name">Codemotion</p>
+										</div>
+									</div>
+								</div>
+								<span class="cm-badge">Web Developer</span>
+							</div>
+							<div class="cm-article-link">
+								<span class="cm-related-article-icon">
+									<div class="cm-icon">
+										<svg viewbox="0 0 24 24" class="sc-cm-icon"><path fill="#ff5c00" d="M10,17L15,12L10,7V17Z"></path></svg>
+									</div>
+								</span>
+							</div>
+						</article>
+					</a>
+				</div>
+
+
+<ul class="wp-block-list">
+<li>
+<strong>Load time</strong>. Probably the most basic metric for web performance, load time measures the delay between an initial page request and the content being fully displayed in the browser. It is often reckoned to be an important factor in <a href="https://www.codemotion.com/magazine/ai-ml/how-search-engines-work/" target="_blank" aria-label=" (opens in a new tab)" rel="noreferrer noopener" class="ek-link">search engine rankings</a>.</li>
+
+
+
+<li>
+<strong>First contentful paint (FCP)</strong>. Getting something up on the screen fast is an important indicator of progress. FCP is a measure of the time between initial loading and some part of the page content being rendered.</li>
+
+
+
+<li>
+<strong>Time to interactive (TTI)</strong>. TTI measures the time between FCP and the page&rsquo;s becoming interactive. A page can look completely loaded but it may take longer for controls to become fully interactive. TTI is therefore a measure of responsivity.</li>
+
+
+
+<li>
+<strong>Cumulative Layout Shift (CLS)</strong>. This is a measure of the point at which a page layout becomes stable. Page layouts shuffling around while loading is a common user irritation, particularly with interactive elements. So CLS is a key usability metric.</li>
+</ul>
+
+
+
+<p>There are <a href="https://web.dev/metrics/" class="ek-link">other metrics</a> we may consider, but this trio of speed, responsivity and usability provides a good background for considering optimization. With these metrics in mind, let&rsquo;s consider the main techniques for improving performance.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-strategies-for-web-performance-optimization">Strategies for web performance optimization</h2>
+
+
+
+<h2 class="wp-block-heading" id="h-code-splitting">Code Splitting</h2>
+
+
+
+<p>Code splitting is simply breaking down code into independently loadable components. Today&rsquo;s web apps often have a significant footprint in terms of CSS and Javascript. But not all of these assets are required for the initial page load and some may not be needed at all. By splitting code into bundles you can optimize with selective preloading or lazy loading.</p>
+
+
+
+<p>Bundlers like <a href="https://webpack.js.org/" target="_blank" aria-label=" (opens in a new tab)" rel="noreferrer noopener" class="ek-link">Webpack</a> modularise code and use dependency graphs to determine when and where assets are needed. This gives the option to use dynamic imports, which respond to function calls within modules. Bundle splitting is a complementary approach to code splitting though less granular. It involves configuration-led separation rather than client-side loading decisions. A common use case is to separate third-party dependencies from your application code. That way, each need only be loaded when there are changes.</p>
+
+
+
+<p>Code splitting also enables tree shaking, a server-side analysis which removes unused code from your production bundle. Most bundlers now do this by default, reducing code size without changing behaviour.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-lazy-loading">Lazy Loading</h2>
+
+
+
+<p><a href="https://www.codemotion.com/magazine/backend/how-to-boost-performance-with-lazy-loading/" target="_blank" aria-label="Lazy loading strategies (opens in a new tab)" rel="noreferrer noopener" class="ek-link">Lazy loading strategies</a> separate the critical from the non-critical assets and only serve the latter when needed. It is a technique which is closely tied to code splitting.</p>
+
+
+
+<p>Clearly, a central question for any lazy loading strategy is the determination of what its triggers are. This can be as simple as specifying <code>loading="lazy"</code> in your <code>img</code> tags, which will defer loading images until they are required. You can also configure lazy loading of other assets by directly watching for elements coming into view. The Intersection Observer API is a typical example. It asynchronously monitors the intersection of a specified element with the viewport, at which point you can trigger your asset requests.</p>
+
+
+
+<p>Using these techniques, lazy loading can be applied to images as well as media resources for video clips and animations. Javascript modules can similarly be deferred, as well as CSS. Not only does this help to speed up network performance, but it also prevents the browser from rendering elements before they are needed.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-preloading">Preloading</h2>
+
+
+
+<p>Whereas lazy loading defers actions until needed, preloading gets them done in advance. Some assets are not required immediately on page load, but will almost certainly be needed at some point. In such cases, it can be valuable to preload them. This is easily achieved using the <code>preload</code> attribute. For example, to preload a Javascript module:</p>
+
+
+<pre class="wp-block-code" aria-describedby="shcb-language-1" data-shcb-language-name="HTML, XML" data-shcb-language-slug="xml"><span><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"preload"</span> <span class="hljs-attr">as</span>=<span class="hljs-string">"script"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"myscript.js&gt;
+&lt;/code&gt;"</span>&gt;</span></code></span><small class="shcb-language" id="shcb-language-1"><span class="shcb-language__label">Code language:</span> <span class="shcb-language__name">HTML, XML</span> <span class="shcb-language__paren">(</span><span class="shcb-language__slug">xml</span><span class="shcb-language__paren">)</span></small></pre>
+
+
+<p>Since <a href="https://http2.github.io/" target="_blank" aria-label=" (opens in a new tab)" rel="noreferrer noopener" class="ek-link">HTTP/2</a>, you can also use server push to send assets to the client before they are directly requested. Of course, care is needed with these techniques to avoid bandwidth competition with other resources. Preloading should be used sparingly since modern browsers already optimize the load order of resources.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-optimizing-images">Optimizing Images</h2>
+
+
+
+<p>Image optimization is one of the best-known forms of web performance improvement. Yet it can be too easily overlooked by designers who may have become complacent about network performance or know too little about image formats. Before anything else, consider whether an image is needed at all. CSS3 now has sophisticated effects like shadows and gradients that designers formerly used GIFs or PNGs to achieve. For more complex vector imagery, SVG is also a good idea. Not only are these options more lightweight in terms of bytes, but they also usually give better quality, by adjusting to any required resolution.</p>
+
+
+
+<p>For photographic imagery, the compression level is key. Designers must balance image quality against size. Good judgement and a careful eye are needed, as well as an awareness of the variations in presentation on different devices and resolutions. Also, make sure you are using the best format for the type of imagery. Photographic content has traditionally been rendered as JPEGs, but these days, <a href="https://developers.google.com/speed/webp">WebP</a> and <a href="https://aomediacodec.github.io/av1-avif/">AVIF</a> offer better-quality reproductions with smaller file sizes. Compatibility can be an issue though &ndash; all modern browsers now support WebP, but AVIF is yet to be properly implemented on some.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="576" src="https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-1024x576.jpg" alt="lazy loading, web performance optimization" class="wp-image-17245" srcset="https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-1024x576.jpg 1024w, https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-300x169.jpg 300w, https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-768x432.jpg 768w, https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-1536x864.jpg 1536w, https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-896x504.jpg 896w, https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading-400x225.jpg 400w, https://www.codemotion.com/magazine/wp-content/uploads/2022/03/Portada-Lazy-Loading.jpg 1920w" sizes="auto, (max-width: 1024px) 100vw, 1024px"><figcaption class="wp-element-caption">Lazy Loading: discover it&rsquo;s benefits, best practices, and more.</figcaption></figure>
+
+
+
+<h2 class="wp-block-heading" id="h-minification-and-compression">Minification and Compression</h2>
+
+
+
+<p>As well as image compression, textual assets like CSS and Javascript can be minified and compressed to improve network transfer rates. This involves a reversal of the usual thinking around code styling: when writing code, it is important to consider readability and maintenance. That means meaningful variable names, good use of whitespace and judicious use of comments. However, when it comes to serving these assets, you should jettison readability in favour of size.</p>
+
+
+
+<p>Minification removes excess whitespace, comments and redundant block delimiters. Even the removal of newline characters can have a measurable impact on load times. Minification is easily achieved &ndash; you&rsquo;ll find a range of command-line minification tools that you can work into your toolchain, such as <a href="http://www.crockford.com/jsmin.html">JSMin</a> and <a href="https://www.npmjs.com/package/uglify-js">UglifyJS</a>. UglifyJS can also change things like variable names to save even more space, as well as obfuscate code to prevent re-use.</p>
+
+
+
+<p>Another option is gzip compression to reduce the size of text-based assets. Typically this is enabled as part of your web server configuration. For example, with Apache, you can use the <a href="https://httpd.apache.org/docs/2.0/mod/mod_deflate.html">mod_deflate</a> module.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-caching">Caching</h2>
+
+
+
+<p>Finally, let&rsquo;s not forget caching. <a href="https://www.codemotion.com/magazine/backend/distributed-cache/" target="_blank" aria-label="Caching can improve web performance (opens in a new tab)" rel="noreferrer noopener" class="ek-link">Caching can improve web performance</a> by lowering server load and reducing network transfer loads. Caching can be both server-side and browser-based. Your browser web caches store recently requested assets to avoid downloading them anew each time they are requested. Cached items are refreshed either after they have expired, when the last-modified header shows they are stale or in response to a manual refresh by the user. Frequently changing or sensitive resources may also be set as &lsquo;no-cache&rsquo; to avoid out-of-date information.</p>
+
+
+
+<p>A more recent innovation is the use of <a href="https://developer.chrome.com/docs/workbox/service-worker-overview/" class="ek-link">service workers</a>. These are Javascript assets that sit between web servers and browsers, acting as a proxy that allows offline access and boosts page performance. They include a programmable Cache interface, which is entirely separate from the HTTP cache used directly by browsers. That means the service worker cache allows more fine-grain tuning for particular applications. The types of assets to be cached as well as their update strategies can be configured to offer a fast and accurate experience as well as near-seamless offline capabilities.</p>
+
+
+
+<p></p>
+
+
+
+<h2 class="wp-block-heading" id="h-conclusion">Conclusion</h2>
+
+
+
+<p>Web performance optimization is vital for any website, app or service. There are many approaches, configurable to suit your desired outcomes. These include long-standing and basic techniques like image compression and browser caching as well as more recent innovations like Javascript service workers and the bundled asset management that allows code splitting, lazy loading and preloading optimizations. We&rsquo;ve also seen the benefits that even a simple technique like minification can bring.</p>
+
+
+
+<p>Though we&rsquo;ve covered the basics, optimization doesn&rsquo;t end here. If you&rsquo;re keen to explore the topic further, you may also like to look at more server-side technologies like database tuning and infrastructure config, including using CDNs to leverage techniques like <a href="https://www.codemotion.com/magazine/backend/distributed-cache/">distributed cache</a>.</p>
+</div>
+<div class="cm-related-articles">
+<h3>Related Posts</h3>
+<div class="cm-related-articles__articles">
+<article><a href="https://www.codemotion.com/magazine/frontend/web-developer/angular-fallback-content-in-ng-content/" aria-label="Read more about Angular fallback content in ng-content"><div class="cm-related-articles__image-box"><img width="180" height="128" src="https://www.codemotion.com/magazine/wp-content/uploads/2024/05/image-180x128.png" class="attachment-sidebar-featured size-sidebar-featured wp-post-image" alt="Angular v18 fallback" decoding="async" loading="lazy"></div>
+<div class="cm-related-articles__body">
+<h4>Angular fallback content in ng-content</h4>
+<div class="cm-related-articles__meta">
+<div class="cm-related-articles__author">Davide Passafaro</div>
+<div class="cm-related-articles__date">May 13, 2024</div>
+</div>
+</div></a></article><article><a href="https://www.codemotion.com/magazine/frontend/web-developer/how-to-set-up-a-cypress-typescript-project/" aria-label="Read more about How to Set Up a Cypress TypeScript Project"><div class="cm-related-articles__image-box"><img width="180" height="128" src="https://www.codemotion.com/magazine/wp-content/uploads/2023/02/iStock-1288800172-180x128.jpg" class="attachment-sidebar-featured size-sidebar-featured wp-post-image" alt="setup project, web development, framework, typescript cypress" decoding="async" loading="lazy"></div>
+<div class="cm-related-articles__body">
+<h4>How to Set Up a Cypress TypeScript Project</h4>
+<div class="cm-related-articles__meta">
+<div class="cm-related-articles__author">Antonello Zanini</div>
+<div class="cm-related-articles__date">September 12, 2023</div>
+</div>
+</div></a></article><article><a href="https://www.codemotion.com/magazine/frontend/web-developer/vitejs-guide/" aria-label="Read more about The Rise of ViteJS: Unraveling its Popularity"><div class="cm-related-articles__image-box"><img width="180" height="128" src="https://www.codemotion.com/magazine/wp-content/uploads/2023/08/ViteJS-framework-min-scaled-e1691399534636-180x128.jpg" class="attachment-sidebar-featured size-sidebar-featured wp-post-image" alt="ViteJS, javascript framework, what is it." decoding="async" loading="lazy"></div>
+<div class="cm-related-articles__body">
+<h4>The Rise of ViteJS: Unraveling its Popularity</h4>
+<div class="cm-related-articles__meta">
+<div class="cm-related-articles__author">Codemotion</div>
+<div class="cm-related-articles__date">August 9, 2023</div>
+</div>
+</div></a></article><article><a href="https://www.codemotion.com/magazine/frontend/web-developer/designing-innovative-hmis-with-web-technologies/" aria-label="Read more about Designing Innovative HMIs with Web Technologies"><div class="cm-related-articles__image-box"><img width="180" height="128" src="https://www.codemotion.com/magazine/wp-content/uploads/2023/06/Human-Machine-interfaces-HMIs-180x128.jpg" class="attachment-sidebar-featured size-sidebar-featured wp-post-image" alt="Human-Machine Interfaces (HMIs). React Redux." decoding="async" loading="lazy"></div>
+<div class="cm-related-articles__body">
+<h4>Designing Innovative HMIs with Web Technologies</h4>
+<div class="cm-related-articles__meta">
+<div class="cm-related-articles__author">Codemotion</div>
+<div class="cm-related-articles__date">June 13, 2023</div>
+</div>
+</div></a></article>
+</div>
+</div>
+<div class="ssbats-social-share-buttons ssbats-footer">
+<span class="ssbats-social-share-label">Share on:</span><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization" class="ssbats-share-facebook ssbats-share-popup"><span>facebook</span></a><a href="https://www.twitter.com/intent/tweet?url=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization&amp;via=CodemotionIT" class="ssbats-share-twitter ssbats-share-popup"><span>twitter</span></a><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization" class="ssbats-share-linkedin ssbats-share-popup"><span>linkedin</span></a><a href="https://www.reddit.com/submit?url=https://www.codemotion.com/magazine/frontend/web-developer/advanced-web-performance-optimization" class="ssbats-share-reddit ssbats-share-popup"><span>reddit</span></a>
+</div>
+<footer class="entry-footer"><p class="entry-meta"><span class="entry-tags">Tagged as:<a href="https://www.codemotion.com/magazine/tag/lazy-loading/" rel="tag">lazy loading</a></span></p></footer></article><div class="widget-cm-author widget-cm-author-layout-default">
+<a href="https://www.codemotion.com/magazine/author/codemotion-2/"><img alt="" src="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-codemotionlogo-150x150.png" srcset="https://www.codemotion.com/magazine/wp-content/uploads/2019/11/cropped-codemotionlogo-300x300.png 2x" class="avatar avatar-88 photo" height="88" width="88" loading="lazy" decoding="async"></a><div class="cm-author-container"><div class="cm-author-info">
+<a href="https://www.codemotion.com/magazine/author/codemotion-2/" aria-label="Read all articles from Codemotion"><div class="name">Codemotion</div></a><div class="description">Articles wirtten by the Codemotion staff. Tech news, inspiration, latest treends in software development and more.</div>
+</div></div>
+</div>
+<div class="prev-next-navigation">
+        <div class="wrapper">
+        <div class="one-half first"><div class="prev"><a href="https://www.codemotion.com/magazine/frontend/multilingual-site-in-next-js-with-next-i18next/" rel="prev"><h5>How to Create a Multilingual Site in Next.js With next-i18next</h5>
+<span class="pre-title"><i class="icon-set arrow-left"></i>Previous Post</span> </a></div></div>
+        <div class="one-half"><div class="next"><a href="https://www.codemotion.com/magazine/devops/cloud/5-tips-for-a-successful-gitops-implementation/" rel="next"><h5>5 Tips for a Successful GitOps Implementation</h5>
+<span class="pre-title">Next Post<i class="icon-set arrow-right"></i></span></a></div></div>
+        </div>
+        </div></main></div></div>
+<div class="footer-widgets" id="genesis-footer-widgets">
+<h2 class="genesis-sidebar-title screen-reader-text">Footer</h2>
+<div class="wrap">
+<div class="widget-area footer-widgets-1 footer-widget-area">
+<section id="nav_menu-4" class="widget widget_nav_menu"><div class="widget-wrap">
+<h3 class="widgettitle widget-title">Discover</h3>
+<div class="menu-discover-container"><ul id="menu-discover" class="menu">
+<li id="menu-item-23744" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23744"><a href="https://events.codemotion.com/">Events</a></li>
+<li id="menu-item-23745" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23745"><a href="https://community-en.codemotion.it/">Community</a></li>
+<li id="menu-item-23746" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23746"><a href="https://community.codemotion.com/?view=communities">Partners</a></li>
+<li id="menu-item-23747" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23747"><a href="https://community-en.codemotion.it/partners/proposal">Become a partner</a></li>
+<li id="menu-item-23748" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23748"><a href="https://events.codemotion.com/?type=online_hackathon">Hackathons</a></li>
+</ul></div>
+</div></section>
+</div>
+<div class="widget-area footer-widgets-3 footer-widget-area">
+<section id="nav_menu-6" class="widget widget_nav_menu"><div class="widget-wrap">
+<h3 class="widgettitle widget-title">Magazine</h3>
+<div class="menu-magazine-container"><ul id="menu-magazine" class="menu">
+<li id="menu-item-23752" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-23752"><a href="https://www.codemotion.com/magazine">Tech articles</a></li>
+</ul></div>
+</div></section>
+<section id="nav_menu-7" class="widget widget_nav_menu"><div class="widget-wrap">
+<h3 class="widgettitle widget-title">Talent</h3>
+<div class="menu-talent-container"><ul id="menu-talent" class="menu">
+<li id="menu-item-23753" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23753"><a href="https://www.codemotion.com/talent/">Discover talent</a></li>
+<li id="menu-item-23754" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23754"><a href="https://www.codemotion.com/jobs/">Jobs</a></li>
+</ul></div>
+</div></section>
+</div>
+<div class="widget-area footer-widgets-4 footer-widget-area">
+<section id="nav_menu-8" class="widget widget_nav_menu"><div class="widget-wrap">
+<h3 class="widgettitle widget-title">Companies</h3>
+<div class="menu-companies-container"><ul id="menu-companies" class="menu">
+<li id="menu-item-23755" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23755"><a href="https://partners.codemotion.com/">Discover companies</a></li>
+</ul></div>
+</div></section>
+<section id="nav_menu-9" class="widget widget_nav_menu"><div class="widget-wrap">
+<h3 class="widgettitle widget-title">For Business</h3>
+<div class="menu-for-business-container"><ul id="menu-for-business" class="menu">
+<li id="menu-item-23756" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23756"><a href="https://forcompanies.codemotion.com/">Codemotion for companies</a></li>
+</ul></div>
+</div></section>
+</div>
+<div class="widget-area footer-widgets-5 footer-widget-area">
+<section id="nav_menu-11" class="widget widget_nav_menu"><div class="widget-wrap">
+<h3 class="widgettitle widget-title">About</h3>
+<div class="menu-about-container"><ul id="menu-about" class="menu">
+<li id="menu-item-23757" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23757"><a href="https://about.codemotion.com/about-en/">About us</a></li>
+<li id="menu-item-23758" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23758"><a href="https://community-it.codemotion.it/community/diventa-contributor">Become a contributor</a></li>
+<li id="menu-item-23759" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23759"><a href="https://about.codemotion.com/lavora-con-noi/">Work with us</a></li>
+<li id="menu-item-23760" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23760"><a href="mailto:info@codemotion.com">Contact us</a></li>
+</ul></div>
+</div></section>
+</div>
+<div class="widget-area footer-widgets-6 footer-widget-area">
+<section id="custom_html-14" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap">
+<h3 class="widgettitle widget-title">Follow Us</h3>
+<div class="textwidget custom-html-widget">
+<div class="cm-social-row">
+	<a id="ln-social-icon-link" href="https://www.linkedin.com/company/codemotion/" target="_blank" class="brxe-div">
+		<svg class="cm-social-icon" id="ln-social-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none"><path d="M26.3324 5.74976H4.26904V27.8131H26.3324V5.74976Z" fill="#FF5C00"></path><path d="M25.8202 6.26301V27.3024H4.78084V6.26301H25.8202ZM26.8442 5.23901H3.75684V28.3264H26.8442V5.23901Z" fill="#FF5C00"></path><path d="M27.8685 4.21375H5.80518V26.2771H27.8685V4.21375Z" fill="white"></path><path d="M27.3563 4.727V25.7664H6.31697V4.727H27.3563ZM28.3803 3.703H5.29297V26.7904H28.3803V3.703Z" fill="#FF5C00"></path><path d="M13.101 13.024H10.2734V21.9866H13.101V13.024Z" fill="#FF5C00"></path><path d="M12.0531 11.7221C12.9313 11.5318 13.4888 10.6656 13.2985 9.78753C13.1081 8.90943 12.242 8.35187 11.3639 8.54221C10.4858 8.73254 9.92822 9.59869 10.1186 10.4768C10.3089 11.3549 11.175 11.9125 12.0531 11.7221Z" fill="#FF5C00"></path><path d="M20.3917 12.7578C18.2042 12.7578 17.5757 14.2516 17.5757 14.2516V13.0241H14.8608V21.9841H17.6884V17.2929C17.6884 16.6529 17.8842 15.2116 19.3421 15.2116C20.8 15.2116 20.8 16.8961 20.8 16.8961V21.9815H23.5917V16.6695C23.5917 14.1453 22.578 12.7578 20.3917 12.7578Z" fill="#FF5C00"></path></svg>
+	</a>
+	<a id="tw-social-icon-link" href="https://twitter.com/CodemotionIT" target="_blank" class="brxe-div">
+		<svg class="cm-social-icon" id="tw-social-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none"><path d="M26.3324 5.74976H4.26904V27.8131H26.3324V5.74976Z" fill="#FF5C00"></path><path d="M25.8202 6.26301V27.3024H4.78084V6.26301H25.8202ZM26.8442 5.23901H3.75684V28.3264H26.8442V5.23901Z" fill="#FF5C00"></path><path d="M27.8685 4.21375H5.80518V26.2771H27.8685V4.21375Z" fill="white"></path><path d="M27.3563 4.727V25.7664H6.31697V4.727H27.3563ZM28.3803 3.703H5.29297V26.7904H28.3803V3.703Z" fill="#FF5C00"></path><path d="M16.666 13.0752C13.1793 12.9869 10.8177 10.1402 10.8177 10.1402C10.8177 10.1402 9.61577 12.425 11.6676 13.897C11.2463 13.9075 10.8305 13.7988 10.4683 13.5834C10.4683 13.5834 10.2225 15.7018 12.6443 16.3738C12.6443 16.3738 12.4843 16.5504 11.4628 16.4685C11.4628 16.4685 11.962 18.3411 14.0471 18.3987C14.0471 18.3987 12.7671 19.7811 9.96777 19.6314C9.96777 19.6314 14.403 22.6355 19.1083 19.3651C20.6993 18.2541 22.6052 15.2051 22.3364 12.416C22.8934 12.0363 23.3622 11.5413 23.7111 10.9645C23.7111 10.9645 23.3412 11.1168 22.9572 11.2205C22.7023 11.2943 22.4408 11.3432 22.1764 11.3664C22.1764 11.3664 23.2311 10.6381 23.3463 9.82275C23.3463 9.82275 22.1943 10.4474 21.5953 10.4935H21.5735C21.1815 10.0768 20.6732 9.7876 20.1147 9.66335C19.5563 9.53909 18.9734 9.58553 18.4416 9.79663C17.9098 10.0077 17.4538 10.3738 17.1326 10.8472C16.8114 11.3207 16.64 11.8797 16.6404 12.4519C16.6403 12.6597 16.6626 12.867 16.707 13.0701L16.666 13.0752Z" fill="#FF5C00"></path></svg>
+	</a>
+	<a id="ig-social-icon-link" href="https://www.instagram.com/codemotion_ita/" target="_blank" class="brxe-div">
+		<svg class="cm-social-icon" id="ig-social-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none"><path d="M26.3324 5.7511H4.26904V27.8145H26.3324V5.7511Z" fill="#FF5C00"></path><path d="M25.8202 6.26301V27.3024H4.78084V6.26301H25.8202ZM26.8442 5.23901H3.75684V28.3264H26.8442V5.23901Z" fill="#FF5C00"></path><path d="M27.8685 4.21509H5.80518V26.2784H27.8685V4.21509Z" fill="white"></path><path d="M27.3563 4.727V25.7664H6.31697V4.727H27.3563ZM28.3803 3.703H5.29297V26.7904H28.3803V3.703Z" fill="#FF5C00"></path><path d="M19.8609 22.4128H13.8129C12.7157 22.4098 11.6644 21.972 10.8892 21.1955C10.1141 20.4189 9.67826 19.3667 9.67725 18.2695V12.2228C9.6786 11.1246 10.1154 10.0719 10.8919 9.29537C11.6684 8.51887 12.7212 8.08204 13.8193 8.08069H19.8673C20.9655 8.08204 22.0182 8.51887 22.7947 9.29537C23.5712 10.0719 24.008 11.1246 24.0094 12.2228V18.2695C24.0084 19.3689 23.5708 20.423 22.7929 21.2C22.015 21.9769 20.9604 22.4132 19.8609 22.4128ZM13.8129 9.52197C13.0971 9.52298 12.4108 9.8079 11.9047 10.3142C11.3987 10.8205 11.1141 11.5069 11.1134 12.2228V18.2695C11.1137 18.9855 11.3982 19.672 11.9044 20.1784C12.4105 20.6848 13.097 20.9696 13.8129 20.9703H19.8609C20.5769 20.9696 21.2633 20.6848 21.7695 20.1784C22.2756 19.672 22.5601 18.9855 22.5604 18.2695V12.2228C22.5598 11.5069 22.2752 10.8205 21.7691 10.3142C21.263 9.8079 20.5768 9.52298 19.8609 9.52197H13.8129Z" fill="#FF5C00"></path><path d="M16.836 18.8736C16.1186 18.8736 15.4172 18.6608 14.8207 18.2622C14.2241 17.8636 13.7592 17.2971 13.4846 16.6342C13.2101 15.9714 13.1382 15.242 13.2782 14.5384C13.4182 13.8347 13.7637 13.1883 14.271 12.681C14.7783 12.1737 15.4247 11.8282 16.1283 11.6882C16.832 11.5483 17.5614 11.6201 18.2242 11.8947C18.8871 12.1692 19.4536 12.6342 19.8522 13.2307C20.2508 13.8273 20.4635 14.5286 20.4635 15.2461C20.4625 16.2078 20.08 17.1299 19.3999 17.81C18.7199 18.49 17.7978 18.8726 16.836 18.8736ZM16.836 12.8243C16.3567 12.8243 15.8882 12.9664 15.4897 13.2327C15.0912 13.499 14.7807 13.8775 14.5973 14.3204C14.4139 14.7632 14.366 15.2505 14.4596 15.7205C14.5532 16.1906 14.7841 16.6223 15.1231 16.9611C15.4621 17.2999 15.894 17.5306 16.3641 17.624C16.8342 17.7173 17.3214 17.6692 17.7642 17.4856C18.2069 17.302 18.5852 16.9912 18.8513 16.5926C19.1174 16.1939 19.2593 15.7253 19.2591 15.2461C19.2584 14.6037 19.0028 13.988 18.5485 13.5339C18.0942 13.0798 17.4783 12.8246 16.836 12.8243Z" fill="#FF5C00"></path><path d="M20.5352 12.2842C21.0018 12.2842 21.38 11.906 21.38 11.4394C21.38 10.9728 21.0018 10.5946 20.5352 10.5946C20.0687 10.5946 19.6904 10.9728 19.6904 11.4394C19.6904 11.906 20.0687 12.2842 20.5352 12.2842Z" fill="#FF5C00"></path></svg>
+	</a>
+</div>
+<div class="cm-social-row">
+	<a id="fb-social-icon-link" href="https://www.facebook.com/Codemotion.Italy/" target="_blank" class="brxe-div">
+		<svg class="cm-social-icon" id="fb-social-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none"><path d="M26.3324 5.7511H4.26904V27.8145H26.3324V5.7511Z" fill="#FF5C00"></path><path d="M25.8202 6.26301V27.3024H4.78084V6.26301H25.8202ZM26.8442 5.23901H3.75684V28.3264H26.8442V5.23901Z" fill="#FF5C00"></path><path d="M27.8685 4.21509H5.80518V26.2784H27.8685V4.21509Z" fill="white"></path><path d="M27.3563 4.727V25.7664H6.31697V4.727H27.3563ZM28.3803 3.703H5.29297V26.7904H28.3803V3.703Z" fill="#FF5C00"></path><path d="M19.4291 10.624L20.8243 10.6611V8.12289L18.7571 8.04993C17.8246 8.04993 16.9302 8.42038 16.2708 9.07979C15.6114 9.73919 15.241 10.6335 15.241 11.5661V13.8138H12.8486V16.5325H15.241V22.4422H18.2528V16.5325H20.3917L20.8269 13.8138H18.2528V11.8042C18.2528 11.4918 18.3766 11.1922 18.5971 10.971C18.8176 10.7498 19.1168 10.625 19.4291 10.624Z" fill="#FF5C00"></path></svg>
+	</a>
+	<a id="yt-social-icon-link" href="https://www.youtube.com/user/CodemotionWorld" target="_blank" class="brxe-div">
+		<svg class="cm-social-icon" id="yt-social-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none"><path d="M26.3324 5.74976H4.26904V27.8131H26.3324V5.74976Z" fill="#FF5C00"></path><path d="M25.8202 6.26301V27.3024H4.78084V6.26301H25.8202ZM26.8442 5.23901H3.75684V28.3264H26.8442V5.23901Z" fill="#FF5C00"></path><path d="M27.8685 4.21375H5.80518V26.2771H27.8685V4.21375Z" fill="white"></path><path d="M27.3563 4.727V25.7664H6.31697V4.727H27.3563ZM28.3803 3.703H5.29297V26.7904H28.3803V3.703Z" fill="#FF5C00"></path><path d="M25.4208 15.2461C25.4208 15.2461 25.5757 11.511 24.6592 10.3424C24.0627 9.58465 22.9862 9.42081 21.7344 9.38113C19.5161 9.30945 17.0317 9.30945 16.8345 9.30945C16.6374 9.30945 14.1542 9.30945 11.936 9.38113C10.6841 9.42081 9.60766 9.58465 9.01118 10.3424C8.0947 11.511 8.24318 15.2461 8.24318 15.2461C8.24318 15.2461 8.0883 18.9811 9.01118 20.1498C9.60766 20.9088 10.6841 21.0726 11.936 21.1123C14.1542 21.1827 16.6387 21.184 16.8345 21.184C17.0304 21.184 19.5161 21.184 21.7344 21.1123C22.9862 21.0726 24.0627 20.9088 24.6592 20.1498C25.5757 18.9811 25.4208 15.2461 25.4208 15.2461Z" fill="#FF5C00"></path><path d="M15.1401 12.7347V17.8496L19.6073 15.2922L15.1401 12.7347Z" fill="white"></path></svg>
+	</a>
+	<a id="rss-social-icon-link" href="https://www.codemotion.com/magazine/feed/" target="_blank" class="brxe-div">
+		<svg class="cm-social-icon" id="rss-social-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none"><path d="M26.3324 5.74976H4.26904V27.8131H26.3324V5.74976Z" fill="#FF5C00"></path><path d="M25.8202 6.26301V27.3024H4.78084V6.26301H25.8202ZM26.8442 5.23901H3.75684V28.3264H26.8442V5.23901Z" fill="#FF5C00"></path><path d="M27.8685 4.21375H5.80518V26.2771H27.8685V4.21375Z" fill="white"></path><path d="M27.3563 4.727V25.7664H6.31697V4.727H27.3563ZM28.3803 3.703H5.29297V26.7904H28.3803V3.703Z" fill="#FF5C00"></path><path d="M11.8003 18.3782C11.4239 18.3782 11.0559 18.4899 10.7429 18.699C10.4299 18.9081 10.1859 19.2054 10.0419 19.5532C9.8978 19.901 9.8601 20.2837 9.93355 20.6529C10.007 21.0221 10.1883 21.3613 10.4545 21.6275C10.7206 21.8937 11.0598 22.0749 11.429 22.1484C11.7982 22.2218 12.1809 22.1841 12.5287 22.0401C12.8765 21.896 13.1738 21.652 13.3829 21.339C13.5921 21.026 13.7037 20.658 13.7037 20.2816C13.7037 19.7768 13.5032 19.2927 13.1462 18.9357C12.7893 18.5788 12.3051 18.3782 11.8003 18.3782ZM9.89825 12.9869V15.6826C11.6228 15.6826 13.2767 16.3676 14.4961 17.5871C15.7156 18.8065 16.4007 20.4604 16.4007 22.185H19.0963C19.0963 19.7455 18.1273 17.4059 16.4023 15.6809C14.6773 13.956 12.3377 12.9869 9.89825 12.9869ZM9.89825 8.30847V11.0835C12.8425 11.0835 15.6662 12.2531 17.7482 14.335C19.8301 16.417 20.9997 19.2407 20.9997 22.185H23.7747C23.7747 20.3627 23.4158 18.5582 22.7185 16.8747C22.0211 15.1911 20.999 13.6613 19.7104 12.3728C18.4219 11.0842 16.8921 10.0621 15.2086 9.36475C13.525 8.6674 11.7205 8.30847 9.89825 8.30847Z" fill="#FF5C00"></path></svg>
+	</a>
+</div>
+</div>
+</div></section>
+</div>
+</div>
+</div>
+<footer class="site-footer"><div class="wrap"><p>&copy; Copyright Codemotion srl  Via Marsala, 29/H, 00185 Roma P.IVA 12392791005 | <a title="Privacy Policy" href="https://drive.google.com/file/d/1LzESrU_9NU28u1gw9OI7BLTjqhVw3i82/view" target="_blank">Privacy policy</a> | <a title="Terms and conditions" href="https://docs.google.com/document/d/1ZkS0OAypX6LmyW32q7QVHNJcUqr0NXmM/view" target="_blank">Terms and conditions</a></p></div></footer>
+</div>	<script type="text/javascript">
+		function genesisBlocksShare( url, title, w, h ){
+			var left = ( window.innerWidth / 2 )-( w / 2 );
+			var top  = ( window.innerHeight / 2 )-( h / 2 );
+			return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=600, top='+top+', left='+left);
+		}
+	</script>
+	<!-- NEW Google Tag Manager (noscript) -->
+<noscript><iframe src="//cdn.iubenda.com/cookie_solution/empty.html" height="0" width="0" style="display:none;visibility:hidden" suppressedsrc="https://www.googletagmanager.com/ns.html?id=GTM-M6LGRFX" class=" _iub_cs_activate" data-iub-purposes="2"></iframe></noscript>
+<!-- End NEW Google Tag Manager (noscript) --><script type="text/javascript" id="site_tracking-js-extra">
+/* <![CDATA[ */
+var php_data = {"ac_settings":{"tracking_actid":253528439,"site_tracking_default":1},"user_email":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/plugins/activecampaign-subscription-forms/site_tracking.js" id="site_tracking-js"></script>
+<script type="text/javascript" id="iubenda-forms-js-extra">
+/* <![CDATA[ */
+var iubFormParams = [];
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/plugins/iubenda-cookie-law-solution/assets/js/frontend.js?ver=3.11.3" id="iubenda-forms-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/plugins/genesis-blocks/dist/assets/js/dismiss.js?ver=1722931078" id="genesis-blocks-dismiss-js-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-includes/js/hoverIntent.min.js?ver=1.10.2" id="hoverIntent-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/themes/genesis/lib/js/menu/superfish.min.js?ver=1.7.10" id="superfish-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/themes/genesis/lib/js/menu/superfish.args.min.js?ver=3.5.0" id="superfish-args-js"></script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/themes/genesis/lib/js/skip-links.min.js?ver=3.5.0" id="skip-links-js"></script>
+<script type="text/javascript" id="codemotion-magazine-responsive-menu-js-extra">
+/* <![CDATA[ */
+var genesis_responsive_menu = {"mainMenu":"","menuIconClass":"icon-set menu","subMenu":"Submenu","subMenuIconClass":"icon-set arrow","menuClasses":{"others":[".nav-primary"]}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/themes/genesis/lib/js/menu/responsive-menus.min.js?ver=1.1.3" id="codemotion-magazine-responsive-menu-js"></script>
+<script type="text/javascript" src="//cdn.iubenda.com/cons/iubenda_cons.js?ver=3.11.3" id="iubenda-cons-cdn-js"></script>
+<script type="text/javascript" id="iubenda-cons-js-extra">
+/* <![CDATA[ */
+var iubConsParams = {"api_key":"EQ0CUqdF78Xz9BTtxDaUPxBSBksuDLyR","log_level":"error","logger":"console","send_from_local_storage_at_load":"true"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.codemotion.com/magazine/wp-content/plugins/iubenda-cookie-law-solution/assets/js/cons.js?ver=3.11.3" id="iubenda-cons-js"></script>
 </body>
 </html>
+<!-- Parsed with iubenda experimental class in 0.0077 sec. -->
